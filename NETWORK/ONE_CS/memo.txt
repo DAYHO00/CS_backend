@@ -92,27 +92,29 @@ PS C:\Users\sed26> netstat -an | findstr ESTABLISHED(연결 완료)
   TCP    127.0.0.1:50842        127.0.0.1:50841        ESTABLISHED
 
 
+6️⃣ TLS 핸드셰이크 확인 (HTTPS에서 암호화 시작)
+PS C:\Users\sed26> curl -v https://www.google.com
 
-❗ 아직 안 한 것 (다음 단계)
+StatusCode        : 200
+StatusDescription : OK
 
-이제부터는 “연결 위에서 무슨 일이 일어나느냐”입니다.
+→ 서버가 “요청 잘 받았고, 정상 응답 줬다”는 뜻
+RawContent        : HTTP/1.1 200 OK
+                    Content-Security-Policy-Report-Only: object-src 'none';base-uri '
+                    self';script-src 'nonce-ZHzE_oNTGUzYEJtFxiGS6A' 'strict-dynamic'
+                    'report-sample' 'unsafe-eval' 'unsafe-inline' https: ...
 
-다음 단계는 이 3개 중 하나
 
-1️⃣ TLS 핸드셰이크
+7️⃣ HTTP 요청/응답 (GET / 헤더 / 상태코드)
+(Invoke-WebRequest https://www.google.com).Headers
+Content-Type                        text/html; charset=UTF-8
+Set-Cookie                          __Secure-STRP=AD6DoguBZv10nHBrFUmpEUgqMCEwH3V8FgLCCipesG9HZkWNCnkSrmjm0Jnt0ywkQpLF6-1Fjm40RsMxiQb0wwlypR
 
-HTTPS에서 암호화 시작
 
-인증서, 공개키, 대칭키
+Invoke-WebRequest http://example.com  ❌ 암호화
+StatusCode        : 200
+StatusDescription : OK
 
-2️⃣ HTTP 요청/응답
-
-GET / POST
-
-헤더, 바디, 상태코드
-
-3️⃣ 패킷 실제 보기 (Wireshark)
-
-SYN / SYN-ACK / ACK
-
-TLS ClientHello
+Invoke-WebRequest https://example.com ⭕ TLS 암호화
+StatusCode        : 200
+StatusDescription : OK

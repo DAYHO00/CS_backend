@@ -1,7 +1,60 @@
-🧪 실습 목표 (지금 단계)
+1️⃣ TCP 실습
 
-TCP는 “연결 + 스트림”이라는 감각
+Step 1. PowerShell 2개 열기
+- 창 A: 서버
+- 창 B: 클라이언트
 
-UDP는 “그냥 던진다”라는 감각
+Step 2. TCP 서버 열기 (창 A)
+PS C:\Users\sed26> ncat -l 9000
 
-OS(TCP)가 해주는 일 vs 개발자가 해야 하는 일 체감
+Step 3. TCP 클라이언트 연결 (창 B)
+PS C:\Users\sed26> ncat localhost 9000
+A
+B
+C
+D
+E
+PS C:\Users\sed26>
+
+PS C:\Users\sed26> ncat localhost 9000
+A
+B
+C
+D
+E
+PS C:\Users\sed26>
+
+2️⃣ UDP 실습
+Step 6. UDP 서버 (창 A)
+
+ncat -u -l 9001
+
+Step 7. UDP 클라이언트 (창 B)
+
+ncat -u localhost 9001
+
+❌ “연결 종료” 같은 개념 없음
+
+✅ Wireshark로 TCP vs UDP 패킷 직접 보기
+
+TCP 패킷 보기
+
+PowerShell (서버)
+ncat -l 9000
+
+PowerShell (클라이언트)
+ncat localhost 9000
+
+Wireshark 필터
+tcp.port == 9000
+
+
+UDP 패킷 보기
+PowerShell (서버)
+ncat -u -l 9001
+
+PowerShell (클라이언트)
+ncat -u localhost 9001
+
+Wireshark 필터
+udp.port == 9001

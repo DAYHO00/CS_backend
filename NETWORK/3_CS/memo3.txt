@@ -1,0 +1,28 @@
+1. 용어 정리
+
+- ISN : Initial Sequence Number
+- SYN: Synchronize
+- ACK : Acknowledgment
+- FIN : Finish
+
+
+PS C:\Users\sed26> Test-NetConnection google.com -Port 80
+=> TCP 스택이 자동으로 이 모든 흐름을 만든다.
+
+1️⃣ 윈도우 OS가 소켓 생성
+2️⃣ TCP 연결 요청 (SYN)
+3️⃣ 서버가 응답
+4️⃣ HTTP 요청 전송
+5️⃣ 서버 응답
+6️⃣ 연결 종료
+
+ComputerName     : google.com
+RemoteAddress    : 142.250.197.78
+RemotePort       : 80
+InterfaceAlias   : Wi-Fi
+SourceAddress    : 10.1.124.31
+TcpTestSucceeded : True
+
+Wireshark - Capturing from Wifi
+
+tcp.port == 1417

@@ -9,3 +9,4 @@
 - [1] 웹 통신의 큰 흐름: https://www.google.com/ 을 접속할 때 일어나는 일 (진행 중)
 - [2] TCP와 UDP의 차이점에 대해서 설명해보세요.
 - [3] TCP 3, 4 way handshake에 대해서 설명해보세요.
+- [4] HTTP와 HTTPS의 차이점에 대해서 설명해보세요.

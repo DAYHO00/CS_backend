@@ -1,0 +1,25 @@
+1. http
+
+curl http://example.com
+
+Wireshark 필터 교체 :  http.request
+
+GET / HTTP/1.1
+Host: example.com
+User-Agent: curl/... => 보임
+
+
+2. https
+
+curl https://example.com
+
+Wireshark 필터 교체 : tls
+
+
+Client Hello
+Server Hello
+Encrypted Application Data
+
+
+GET / HTTP/1.1
+Host: example.com => 이거 안 보임

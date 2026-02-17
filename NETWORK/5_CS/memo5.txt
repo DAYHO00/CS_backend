@@ -1,0 +1,70 @@
+M0. OpenSSL 확인
+TLS Handshake를 직접 관찰할 도구(OpenSSL)가 있는지 확인
+
+PS C:\Users\sed26> openssl version
+OpenSSL 3.0.18 30 Sep 2025 (Library: OpenSSL 3.0.18 30 Sep 2025)
+
+
+M1. 실제 TLS Handshake 보기
+
+PS C:\Users\sed26> openssl s_client -connect example.com:443
+
+ClientHello, Certificate, Public Key를 직접 확인
+
+Server public key is 256 bit -> 서버 공개키 존재 확인.
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+SSL handshake has read 3043 bytes and written 397 bytes
+
+
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIID5jCCA4ygAwIBAgIQ...
+...
+-----END CERTIFICATE-----
+
+
+PS C:\Users\sed26> openssl s_client -connect example.com:443 -tls1_3
+
+Server Temp Key: X25519, 253 bits
+
+1️⃣ 과거 방식 (TLS 1.2, RSA 방식)
+Client:
+세션키 생성 → 1234
+
+Client:
+encrypt(1234, 서버 공개키)
+→ "ABCD" 전송
+
+Server:
+decrypt("ABCD", 서버 개인키)
+→ 1234 획득
+
+2️⃣ 현재 방식 (TLS 1.3, Diffie-Hellman 방식)
+
+Step 1. 서버 인증
+Server → 인증서 전달
+→ 서버 공개키 확인
+→ 서버 신원 확인
+
+Step 2. 키 합의
+Client:
+Client 공개값 = A
+→ Server로 전송
+
+Server:
+Server 공개값 = B
+→ Client로 전송
+
+Client:
+세션키 = 계산(A, B)
+
+Server:
+세션키 = 계산(A, B)
+
+결과:
+Client 세션키 = Server 세션키
+
+Step 3. HTTPS 통신
+
+encrypt(data, 세션키)
+decrypt(data, 세션키)

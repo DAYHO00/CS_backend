@@ -11,3 +11,4 @@
 - [3] TCP 3, 4 way handshake에 대해서 설명해보세요.
 - [4] HTTP와 HTTPS의 차이점에 대해서 설명해보세요.
 - [5] HTTPS에 대해서 설명하고 SSL Handshake에 대해서 설명해보세요.
+- [6] GET과 POST의 차이점에 대해서 설명해보세요.

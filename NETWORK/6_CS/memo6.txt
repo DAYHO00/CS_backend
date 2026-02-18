@@ -1,0 +1,49 @@
+🎯 M1 — GET 요청 실습
+
+Step 1 — 기본 HTTP 서버 실행
+PS C:\Users\sed26> python -m http.server 8000
+Serving HTTP on :: port 8000 (http://[::]:8000/) ...
+
+Step 2 — 브라우저에서 접속
+http://localhost:8000/
+
+
+PS C:\Users\sed26> python -m http.server 8000
+Serving HTTP on :: port 8000 (http://[::]:8000/) ...
+::1 - - [18/Feb/2026 10:24:41] "GET / HTTP/1.1" 200 -
+::1 - - [18/Feb/2026 10:24:41] code 404, message File not found
+::1 - - [18/Feb/2026 10:24:41] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [18/Feb/2026 10:26:03] "GET / HTTP/1.1" 200 -
+
+Step 3 — curl로 GET 요청 보내보기
+
+curl.exe -i http://localhost:8000
+
+HTTP/1.0 200 OK
+Server: SimpleHTTP/0.6 Python/3.13.1
+Date: Wed, 18 Feb 2026 01:26:03 GMT
+Content-type: text/html; charset=utf-8
+Content-Length: 4643
+
+
+🎯 M2 — POST 요청 실습
+
+PS C:\Users\sed26> python -m http.server 8000
+Serving HTTP on :: port 8000 (http://[::]:8000/) ...
+::1 - - [18/Feb/2026 10:29:30] code 501, message Unsupported method ('POST')
+::1 - - [18/Feb/2026 10:29:30] "POST / HTTP/1.1" 501 -
+
+PS C:\Users\sed26> curl.exe -X POST http://localhost:8000
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 501</p>
+        <p>Message: Unsupported method ('POST').</p>
+        <p>Error code explanation: 501 - Server does not support this operation.</p>
+    </body>
+</html>

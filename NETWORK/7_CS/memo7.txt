@@ -1,0 +1,71 @@
+M1 — 기본 HTTP 서버 실행
+
+python -m http.server 8000 
+- python이 기본 제공하는 간단한 정적 파일 서버 
+- 기본적으로 GET과 HEAD만 지원
+- REST API 아님 (파일 서버)
+
+실험 1 — GET
+PS C:\Users\sed26> curl.exe http://localhost:8000
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Directory listing for /</title>
+</head>
+<body>
+<h1>Directory listing for /</h1>
+<hr>
+<ul>
+<li><a href=".aws/">.aws/</a></li>
+<li><a href=".azure/">.azure/</a></li>
+<li><a href=".bash_history">.bash_history</a></li>
+<li><a href=".cache/">.cache/</a></li>
+
+실험 2 — HEAD (body ❌)
+
+HTTP/1.0 200 OK
+Server: SimpleHTTP/0.6 Python/3.13.1
+Date: Thu, 19 Feb 2026 23:52:02 GMT
+Content-type: text/html; charset=utf-8
+Content-Length: 4643
+
+실험 3 — OPTIONS
+
+HTTP/1.0 501 Unsupported method ('OPTIONS')
+Server: SimpleHTTP/0.6 Python/3.13.1
+Date: Thu, 19 Feb 2026 23:52:05 GMT
+Connection: close
+Content-Type: text/html;charset=utf-8
+Content-Length: 360
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 501</p>
+        <p>Message: Unsupported method ('OPTIONS').</p>
+        <p>Error code explanation: 501 - Server does not support this operation.</p>
+    </body>
+</html>
+
+
+실험 4 - POST 요청 보내기
+PS C:\Users\sed26> curl.exe -X POST http://localhost:8000 -i
+HTTP/1.0 501 Unsupported method ('POST')
+
+http://loaclhost:8000
+
+① http:// : 80번 포트가 기본값
+
+② localhost : 자기 자신 컴퓨터 ( localhost = 127.0.0.1 )
+-> 서버가 내 컴퓨터에서 실행 중이기 때문에 이렇게 접속합니다.
+
+③ :8000 : 포트 번호
+컴퓨터 안에는 여러 프로그램이 동시에 네트워크 통신을 합니다.
+이걸 구분하기 위해 “문 번호”가 필요합니다.
+이 문 번호가 포트입니다.

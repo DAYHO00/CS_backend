@@ -1,0 +1,37 @@
+방법 A 컨트롤러에 @CrossOrigin
+
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
+
+public class HelloController{
+
+     @GetMapping("/hello")
+     public String hello(){
+         return "ok";
+     }
+}
+
+방법 B 전역 설정 WebMvcConfigurer
+@Configuration
+public class CorsConfig implements WebMvcConfigurer{
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry){
+        registry.addMapping("/**)
+                .allowedOrigins("http://loaclhost:3000)
+                .allowedMethods("GET","POST","PUT","DELETE","OPTIONS")
+                .allowedHeaders("*")
+                .allowedCredentials(true);
+    }
+
+}
+
+
+즉, 브라우저가
+
+OPTIONS /api/hello (미리 물어봄)
+
+서버가 Access-Control-Allow-* 헤더로 “OK” 응답
+
+그 다음에 진짜 GET/POST 요청 진행

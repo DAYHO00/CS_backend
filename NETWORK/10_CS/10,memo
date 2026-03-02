@@ -1,0 +1,12 @@
+OSI = Open Systems Interconnection [ 통신 설명서 ] 
+개방형 시스템 상호 연결 모델
+
+OSI 7계층 구조
+
+| 7  | 응용 (Application)  | 우리가 사용하는 프로그램 (브라우저, 카톡 등) 
+| 6  | 표현 (Presentation) | 데이터 형식 변환 (암호화, 인코딩)       
+| 5  | 세션 (Session)      | 연결 유지 및 관리                 
+| 4  | 전송 (Transport)    | 데이터 전달 보장 (TCP/UDP)        
+| 3  | 네트워크 (Network)    | IP 주소로 목적지 찾기              
+| 2  | 데이터링크 (Data Link) | 같은 네트워크 내에서 전달 (MAC 주소)    
+| 1  | 물리 (Physical)     | 실제 전기 신호, 케이블              
